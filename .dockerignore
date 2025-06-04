@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+*.egg-info/
+pip-cache/
+*.db
+*.sqlite
+*.sqlite3
+
+# Instance folder (if used locally)
+instance/
+
+# IDE and OS specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test files if not needed in production image
+tests/
+
+# Local development files
+README.md
+# Add any other files or directories that should not be included in the image
