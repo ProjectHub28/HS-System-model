@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - My App</title>
+    {% else %}
+    <title>Welcome to My App</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>
+      MyApp:
+      <a href="{{ url_for('index') }}">Home</a>
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+      {% else %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('cameras') }}">My Cameras</a>
+      <a href="{{ url_for('add_camera') }}">Add Camera</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+      {% endif %}
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
