@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <p>Welcome to the Camera Management App.</p>
+    <p><a href="{{ url_for('cameras') }}">View Your Cameras</a></p>
+{% endblock %}

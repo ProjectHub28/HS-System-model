@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <hr>
+
+    <h2>System Control</h2>
+    <p>System Status: <strong style="color: {% if current_user.is_system_armed %}red{% else %}green{% endif %};">
+        {% if current_user.is_system_armed %}Armed{% else %}Disarmed{% endif %}
+    </strong></p>
+    {% if current_user.is_system_armed %}
+        <form action="{{ url_for('disarm_system') }}" method="POST" style="display: inline;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() if csrf_token else '' }}">
+            <button type="submit">Disarm System</button>
+        </form>
+    {% else %}
+        <form action="{{ url_for('arm_system') }}" method="POST" style="display: inline;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() if csrf_token else '' }}">
+            <button type="submit">Arm System</button>
+        </form>
+    {% endif %}
+    <hr>
+
+    <h2>My Cameras</h2>
+    <p>Live camera feeds and quick access will appear here.</p>
+    <p><a href="{{ url_for('cameras') }}">Manage Cameras</a></p>
+    <hr>
+
+    <h2>Recent Events</h2>
+    <p>Event log will appear here.</p>
+    <hr>
+
+{% endblock %}

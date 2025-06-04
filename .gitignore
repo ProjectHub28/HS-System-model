@@ -1,0 +1,23 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.Python
+env/
+venv/
+pip-selfcheck.json
+
+# Flask
+instance/
+.webassets-cache/
+*.sqlite
+*.db
+
+# Editor-specific
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
