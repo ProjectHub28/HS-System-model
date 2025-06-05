@@ -7,7 +7,7 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
-login_manager.login_view = 'login' # Or whatever your login route will be
+login_manager.login_view = 'main.login' # Or whatever your login route will be
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -17,17 +17,13 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
     login_manager.init_app(app)
 
-    from app.models import User # Import User model
+    from .models import User # Import User model
 
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
 
-    # Import and register blueprints here if you use them
-    # from app.main import bp as main_bp
-    # app.register_blueprint(main_bp)
-
-    # For now, let's import routes directly for simplicity in early stages
-    from app import routes # Import routes after models and user_loader
+    from .routes import main_bp # Import the Blueprint
+    app.register_blueprint(main_bp) # Register the Blueprint
 
     return app
